@@ -10,7 +10,10 @@ app.get('/getHighscore', async function (req, res) {
     const allHighscores = await prisma.highscore.findMany({})
     res.json(
         {
-            data: allHighscores
+            data: allHighscores,
+            orderBy: {
+                score: 'desc',
+            },
         }
     )
 })
