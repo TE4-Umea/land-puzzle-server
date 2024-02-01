@@ -7,13 +7,14 @@ const prisma = new PrismaClient()
 app.use(cors())
 
 app.get('/getHighscore', async function (req, res) {
-    const allHighscores = await prisma.highscore.findMany({})
+    const allHighscores = await prisma.highscore.findMany({
+        orderBy: {
+            score: 'desc',
+        },
+    })
     res.json(
         {
             data: allHighscores,
-            orderBy: {
-                score: 'desc',
-            },
         }
     )
 })
